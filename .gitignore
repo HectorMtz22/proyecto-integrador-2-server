@@ -1,0 +1,8 @@
+# Environment variables
+/venv
+.env
+
+# Private Data files
+/data/*.xlsx
+/data/*.xls
+/data/*.json
