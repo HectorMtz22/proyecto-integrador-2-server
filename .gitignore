@@ -6,3 +6,6 @@
 /data/*.xlsx
 /data/*.xls
 /data/*.json
+
+# Output files in png
+/images/*.png
