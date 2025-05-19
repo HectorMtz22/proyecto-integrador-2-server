@@ -7,6 +7,7 @@ def main():
     semestre = input("Ingresa el Periodo (e.g., A2020): ")
     data = load_data(file_data_location, file_sheet)
     filtered_data = filter_data(data, semestre)
+    # Save images
     print(filtered_data)
     plot_egresados_titulados(filtered_data, semestre)
     plot_cambios_carrera(filtered_data, semestre)
