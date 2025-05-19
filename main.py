@@ -57,7 +57,27 @@ def get_data():
         return jsonify({'error': f'Failed to filter data: {str(e)}'}), 500
     # Convert the filtered data to JSON
     try:
-        filtered_data_json = filtered_data.to_dict(orient='records')
+        # filtered_data_json = filtered_data.to_dict(orient='records')
+        # json with 2 plots
+        #filtered_data_json = {
+        #    'egresados': filtered_data['Eg'].tolist(),
+        #    'titulados': filtered_data['STit'].tolist(),
+        #    'cambios_carrera': filtered_data['ECC'].tolist(),
+        #    'cambios_6ta_oportunidad': filtered_data['ECC6'].tolist(),
+        #    'periodo': filtered_data['Per'].tolist()
+        #}
+
+        # filter data like array
+        filtered_data_json = [
+            {
+                'egresados': row['Eg'],
+                'titulados': row['STit'],
+                'cambios_carrera': row['ECC'],
+                'cambios_6ta_oportunidad': row['ECC6'],
+                'periodo': row['Per']
+            }
+            for index, row in filtered_data.iterrows()
+        ]
     except Exception as e:
         return jsonify({'error': f'Failed to convert data to JSON: {str(e)}'}), 500
     # Return the filtered data as JSON
