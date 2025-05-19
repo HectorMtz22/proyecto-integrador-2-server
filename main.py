@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import os
 
@@ -8,6 +9,11 @@ from read_file import load_data, filter_data
 app = Flask(__name__)
 UPLOAD_FOLDER = './data'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+CORS(app, resources={r"/data": {"origins": "*"}})
+# Set the maximum file size to 16MB
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+# Set the allowed file types
 
 # Ensure the upload folder exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
